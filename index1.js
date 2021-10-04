@@ -25,12 +25,10 @@ const server = http.createServer((req, res) => {
       .on("data", (chunk) => {
         const objdata = JSON.parse(chunk);
         const arrData = [objdata];
-        // console.log(arrData[0].main.temp);
         const realTimeData = arrData
           .map((val) => replaceVal(homeFile, val))
           .join("");
         res.write(realTimeData);
-        // console.log(realTimeData);
       })
       .on("end", (err) => {
         if (err) return console.log("connection closed due to errors", err);
